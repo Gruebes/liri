@@ -1,7 +1,10 @@
 let inquirer = require("inquirer");
 let fs = require("fs");
 let Twitter = require('twitter');
-let twitterCreds = require('./keys');
+let credentials = require('./keys');
+let Spotify = require('node-spotify-api');
+
+let input = process.argv[3];
 
 inquirer
     .prompt([{
@@ -49,17 +52,39 @@ let params = {
 }
 
 function _twitter() {
-    let client = new Twitter(twitterCreds)
-    console.log("client: " + JSON.stringify(client, null, 2))
+    let client = new Twitter(credentials.twitterKeys)
+    let params = { screen_name: 'jackbarker404', count: 20 }
 
-    client.get('search/tweets', { q: 'node.js' }, function(error, tweets, response) {
+    client.get('statuses/user_timeline', params, function(error, tweets, response) {
         if (error) throw error;
-        console.log(JSON.stringify(tweets, null, 2)); // The favorites. 
-        // console.log(JSON.stringify(response, null, 2)); // Raw response object. 
+        for (var i = 0; i < tweets.length; i++) {
+            console.log(' ')
+            console.log(tweets[i].text)
+            console.log(tweets[i].created_at)
+            console.log('----------------------')
+        }
     });
 
 }
 
 function _spotify() {
+    var spotify = new Spotify(credentials.spotifyKeys);
+
+    spotify.search({ type: 'track', query: 'One Love - bob marley' || 'My Mumps', limit: 1 }, function(err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+
+        // console.log(JSON.stringify(data.tracks.items[0].album.artists[0].name, null, 2));
+        // console.log(JSON.stringify(data.tracks.items[0], null, 2));
+        console.log(' ')
+        console.log(JSON.stringify('Artist: ' + data.tracks.items[0].artists[0].name, null, 2));
+        console.log(JSON.stringify('Song: ' + data.tracks.items[0].name, null, 2));
+        console.log(JSON.stringify('URL: ' + data.tracks.items[0].external_urls.spotify, null, 2));
+        console.log(JSON.stringify('Album: ' + data.tracks.items[0].album.name, null, 2));
+        console.log('----------------------')
+
+    });
+
 
 }
