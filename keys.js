@@ -1,5 +1,10 @@
 console.log('this is loaded');
 
+// twitter handle = @jackbarker404
+// twitter login = jackbarker404@gmail.com
+// gmail account = jackbarker404@gmail.com
+// passwords = Tanner123
+
 module.exports = {
     consumer_key: 'Yo7UqkOvbiqHAXZ3aRJmmOewr',
     consumer_secret: '26L6sRAsXJBCjOS9iFL2ImBu85AGCRu7teaRb0011vnamiNF1X',
