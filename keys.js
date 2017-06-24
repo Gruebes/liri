@@ -1,5 +1,3 @@
-console.log('this is loaded');
-
 // twitter handle = @jackbarker404
 // twitter login = jackbarker404@gmail.com
 // gmail account = jackbarker404@gmail.com
@@ -16,4 +14,8 @@ exports.twitterKeys = {
 exports.spotifyKeys = {
     id: "c591cba31aa4462d858e1ba507d97a7c",
     secret: 'd74ec9245ba94f46b553c60b375ff269'
+}
+
+exports.omdbKey = {
+    apiKey: "40e9cece"
 }
