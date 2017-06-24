@@ -94,8 +94,6 @@ function _omdb(movie) {
     let search = 'http://www.omdbapi.com/?apikey=' + key + '&r=json&t=' + title
 
     request(search, function(error, response, body) {
-        // console.log('error:', error); // Print the error if one occurred 
-        // console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received 
         console.log(' ')
         console.log("Title: " + JSON.parse(body).Title);
         console.log("Year: " + JSON.parse(body).Year);
@@ -116,13 +114,10 @@ function _do() {
         }
         let lines = data.toString().replace('\r', '').split('\n');
         let [command, option] = lines[Math.floor(Math.random() * lines.length)].split(',');
-        // this[animal][method]();
-
         switch (command) {
             case 'spotify-this-song':
                 _spotify(option);
                 break;
-
             case 'movie-this':
                 _omdb(option)
                 break;
